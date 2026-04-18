@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Untuk Kamu</title>
+<style>
+body {
+    margin:0;
+    background:black;
+    color:white;
+    text-align:center;
+    font-family:Arial;
+}
+.hidden { display:none; }
+button {
+    padding:10px 20px;
+    font-size:18px;
+    margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<div id="awal">
+    <h1>Ada sesuatu buat kamu...</h1>
+    <button onclick="mulai()">Klik di sini</button>
+</div>
+
+<div id="isi" class="hidden">
+    <h1 id="text"></h1>
+</div>
+
+<script>
+let kata = [
+"Awalnya biasa aja...",
+"Tapi lama-lama jadi banyak cerita...",
+"Sampai akhirnya...",
+"Kita harus berpisah...",
+"Tapi jujur...",
+"Gua bakal kangen :)"
+];
+
+let i = 0;
+
+function mulai(){
+    document.getElementById("awal").style.display = "none";
+    document.getElementById("isi").classList.remove("hidden");
+    jalan();
+}
+
+function jalan(){
+    if(i < kata.length){
+        document.getElementById("text").innerHTML = kata[i];
+        i++;
+        setTimeout(jalan, 2000);
+    }
+}
+</script>
+
+</body>
+</html>

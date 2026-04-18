@@ -3,56 +3,144 @@
 <head>
 <meta charset="UTF-8">
 <title>Untuk Kamu</title>
+
 <style>
 body {
     margin:0;
-    background:black;
+    background: linear-gradient(to bottom, #000000, #1a1a1a);
     color:white;
     text-align:center;
-    font-family:Arial;
+    font-family: 'Segoe UI', sans-serif;
+    overflow:hidden;
 }
-.hidden { display:none; }
+
+/* container */
+.container {
+    position:relative;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+/* tombol */
 button {
-    padding:10px 20px;
+    padding:12px 25px;
     font-size:18px;
+    border:none;
+    border-radius:20px;
+    background:#ffd60a;
+    color:black;
+    cursor:pointer;
+}
+
+/* Nailong */
+#nailong {
+    width:150px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%,100% {transform: translateY(0);}
+    50% {transform: translateY(-15px);}
+}
+
+/* typing */
+#text {
+    font-size:20px;
     margin-top:20px;
+    min-height:60px;
+}
+
+/* heart background */
+.heart {
+    position:absolute;
+    color:red;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {transform: translateY(-100px);}
+    100% {transform: translateY(100vh);}
 }
 </style>
+
 </head>
 <body>
 
-<div id="awal">
-    <h1>Ada sesuatu buat kamu...</h1>
-    <button onclick="mulai()">Klik di sini</button>
+<!-- ❤️ hearts -->
+<script>
+for(let i=0;i<25;i++){
+    let h=document.createElement("div");
+    h.innerHTML="❤️";
+    h.className="heart";
+    h.style.left=Math.random()*100+"%";
+    h.style.animationDuration=(3+Math.random()*5)+"s";
+    document.body.appendChild(h);
+}
+</script>
+
+<div class="container">
+
+    <!-- Nailong -->
+    <img src="nailong.png" id="nailong">
+
+    <!-- Text -->
+    <div id="text"></div>
+
+    <!-- Button -->
+    <button onclick="start()">Mulai</button>
+
 </div>
 
-<div id="isi" class="hidden">
-    <h1 id="text"></h1>
-</div>
+<!-- musik (opsional) -->
+<audio id="music" loop>
+  <source src="lagu.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-let kata = [
-"Awalnya biasa aja...",
-"Tapi lama-lama jadi banyak cerita...",
-"Sampai akhirnya...",
-"Kita harus berpisah...",
-"Tapi jujur...",
-"Gua bakal kangen :)"
+let messages = [
+"Hai...",
+"Aku cuma Nailong...",
+"Tapi aku disuruh seseorang buat nyampein ini ke kamu...",
+"Katanya...",
+"Dia banyak cerita sama kamu...",
+"Dan sekarang...",
+"Udah waktunya berpisah...",
+"Tapi dia bilang...",
+"Dia bakal kangen kamu :)",
+"",
+"Terima kasih ya..."
 ];
 
 let i = 0;
+let j = 0;
+let currentText = "";
+let isDeleting = false;
 
-function mulai(){
-    document.getElementById("awal").style.display = "none";
-    document.getElementById("isi").classList.remove("hidden");
-    jalan();
+function start(){
+    document.querySelector("button").style.display="none";
+    document.getElementById("music").play();
+    typeEffect();
 }
 
-function jalan(){
-    if(i < kata.length){
-        document.getElementById("text").innerHTML = kata[i];
-        i++;
-        setTimeout(jalan, 2000);
+function typeEffect(){
+    let text = messages[i];
+
+    if(j < text.length){
+        currentText += text.charAt(j);
+        document.getElementById("text").innerHTML = currentText;
+        j++;
+        setTimeout(typeEffect, 50);
+    } else {
+        setTimeout(()=>{
+            currentText="";
+            j=0;
+            i++;
+            if(i < messages.length){
+                typeEffect();
+            } else {
+                document.getElementById("text").innerHTML += "<br><br>- dari seseorang :)";
+            }
+        },1500);
     }
 }
 </script>

@@ -61,6 +61,15 @@
       animation: fadeIn 1.5s ease;
     }
 
+    @keyframes glow {
+      from {
+        filter: drop-shadow(0 0 5px #fff);
+      }
+      to {
+        filter: drop-shadow(0 0 25px #fff8b0);
+      }
+    }
+
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -201,10 +210,10 @@
     </div>
   </section>
 
-  <section id="countdown">
+  <section id="countdown" class="locked-section">
     <div class="card">
       <h2>Counting The Days ✨</h2>
-      <p>Until Mauza turns 19 years old 🎂</p>
+      <p>The page will fully open when the special day arrives 🌷</p>
 
       <div class="countdown">
         <div class="time-box">
@@ -230,42 +239,25 @@
     </div>
   </section>
 
-  <section>
+  <section id="birthday-surprise" style="display:none;">
     <div class="card">
-      <h2>For You 🌸</h2>
+      <h2>Happy 19th Birthday Mauza 🎂</h2>
 
-      <p class="quote">
-        “Some people make the world feel softer just by being in it.”
-      </p>
-
-      <p style="margin-top:25px;">
-        Semoga di umur yang baru nanti, semua hal baik datang ke hidup kamu.
-        Semoga hari-hari kamu dipenuhi tawa, kebahagiaan, dan orang-orang yang tulus.
-      </p>
-    </div>
-  </section>
-
-  <section>
-    <div class="card">
-      <h2>Secret Letter 💌</h2>
-
-      <button class="btn" onclick="showLetter()">
-        Open Letter
-      </button>
-
-      <div class="letter" id="letter">
-        <p>
-          Happy Birthday, Mauza 🌷<br><br>
-
-          Thank you for existing in this world.
-          I hope your 19th year becomes one of the happiest chapters in your life.
-
-          May every little thing you wish for slowly come true.
-          Stay kind, stay beautiful, and keep being yourself.
-
-          You deserve every good thing this life can offer ✨
-        </p>
+      <div style="font-size: 7rem; margin-top:20px; animation: glow 1.5s infinite alternate;">
+        🎂
       </div>
+
+      <div style="font-size: 3rem; margin-top: -20px;">
+        🕯️🕯️🕯️
+      </div>
+
+      <p style="margin-top:30px;">
+        Finally, the special day has arrived 🌸<br><br>
+
+        Happy birthday, Mauza.
+        May your 19th year be filled with happiness,
+        beautiful memories, and endless smiles ✨
+      </p>
     </div>
   </section>
 
@@ -274,7 +266,7 @@
   </footer>
 
   <script>
-    const birthday = new Date('June 20, 2026 00:00:00').getTime();
+    const birthday = new Date('June 11, 2026 00:00:00').getTime();
 
     setInterval(() => {
       const now = new Date().getTime();
@@ -289,6 +281,9 @@
       document.getElementById('hours').innerHTML = hours;
       document.getElementById('minutes').innerHTML = minutes;
       document.getElementById('seconds').innerHTML = seconds;
+
+      // Untuk testing sementara, surprise page langsung ditampilkan
+      document.getElementById('birthday-surprise').style.display = 'flex';
     }, 1000);
 
     function showLetter() {

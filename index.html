@@ -1,151 +1,293 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<title>Untuk Kamu</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Mauza 🎀</title>
 
-<style>
-body {
-    margin:0;
-    background: #ffffff; /* putih */
-    color:black; /* teks jadi hitam biar keliatan */
-    text-align:center;
-    font-family: 'Segoe UI', sans-serif;
-    overflow:hidden;
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-.container {
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* tombol */
-button {
-    padding:12px 25px;
-    font-size:18px;
-    border:none;
-    border-radius:20px;
-    background:#ffd60a;
-    color:black;
-    cursor:pointer;
-}
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffd6e7, #fff0f5);
+      overflow-x: hidden;
+      color: #ffffff;
+      scroll-behavior: smooth;
+    }
 
-/* Nailong */
-#nailong {
-    width:220px; /* lebih besar */
-    margin-bottom:20px;
-    animation: float 3s ease-in-out infinite;
-}
+    .floating {
+      position: fixed;
+      top: -20px;
+      color: rgba(255,255,255,0.7);
+      animation: fall linear infinite;
+      z-index: 0;
+    }
 
-@keyframes float {
-    0%,100% {transform: translateY(0);}
-    50% {transform: translateY(-15px);}
-}
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
 
-/* typing */
-#text {
-    font-size:20px;
-    margin-top:20px;
-    min-height:60px;
-}
+    section {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      position: relative;
+      z-index: 1;
+    }
 
-/* heart background */
-.heart {
-    position:absolute;
-    color:red;
-    animation: fall linear infinite;
-}
+    .card {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 30px;
+      padding: 40px;
+      width: 90%;
+      max-width: 850px;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      animation: fadeIn 1.5s ease;
+    }
 
-@keyframes fall {
-    0% {transform: translateY(-100px);}
-    100% {transform: translateY(100vh);}
-}
-</style>
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
+    h1 {
+      font-size: 4rem;
+      font-family: 'Dancing Script', cursive;
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .btn {
+      margin-top: 25px;
+      padding: 14px 30px;
+      border: none;
+      border-radius: 50px;
+      background: white;
+      color: #ff5e9c;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      background: #ffe3ee;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .time-box {
+      background: rgba(255,255,255,0.2);
+      padding: 20px;
+      border-radius: 20px;
+      min-width: 120px;
+    }
+
+    .time-box h3 {
+      font-size: 2rem;
+    }
+
+    .quote {
+      font-style: italic;
+      margin-top: 20px;
+      opacity: 0.9;
+    }
+
+    .letter {
+      margin-top: 30px;
+      display: none;
+      animation: fadeIn 1s ease;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: white;
+      font-size: 0.9rem;
+    }
+
+    audio {
+      display: none;
+    }
+
+    @media(max-width: 768px) {
+      h1 {
+        font-size: 2.8rem;
+      }
+
+      .card {
+        padding: 30px 20px;
+      }
+
+      .time-box {
+        min-width: 90px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- ❤️ hearts -->
-<script>
-for(let i=0;i<25;i++){
-    let h=document.createElement("div");
-    h.innerHTML="❤️";
-    h.className="heart";
-    h.style.left=Math.random()*100+"%";
-    h.style.animationDuration=(3+Math.random()*5)+"s";
-    document.body.appendChild(h);
-}
-</script>
+  <audio autoplay loop controls>
+    <source src="music.mp3" type="audio/mp3">
+  </audio>
 
-<div class="container">
-
-    <!-- Nailong -->
-    <img src="nailong.png" id="nailong">
-
-    <!-- Text -->
-    <div id="text"></div>
-
-    <!-- Button -->
-    <button onclick="start()">Mulai</button>
-
-</div>
-
-<!-- musik (opsional) -->
-<audio id="music" loop>
-  <source src="lagu.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-let messages = [
-"Hai...",
-"Aku cuma Nailong...",
-"Tapi aku disuruh seseorang buat nyampein ini ke kamu...",
-"Katanya...",
-"Dia banyak cerita sama kamu...",
-"Dan sekarang...",
-"Udah waktunya berpisah...",
-"Tapi dia bilang...",
-"Dia bakal kangen kamu :)",
-"",
-"Terima kasih ya..."
-];
-
-let i = 0;
-let j = 0;
-let currentText = "";
-let isDeleting = false;
-
-function start(){
-    document.querySelector("button").style.display="none";
-    document.getElementById("music").play();
-    typeEffect();
-}
-
-function typeEffect(){
-    let text = messages[i];
-
-    if(j < text.length){
-        currentText += text.charAt(j);
-        document.getElementById("text").innerHTML = currentText;
-        j++;
-        setTimeout(typeEffect, 50);
-    } else {
-        setTimeout(()=>{
-            currentText="";
-            j=0;
-            i++;
-            if(i < messages.length){
-                typeEffect();
-            } else {
-                document.getElementById("text").innerHTML += "<br><br>- dari seseorang :)";
-            }
-        },1500);
+  <script>
+    for(let i = 0; i < 30; i++) {
+      const flower = document.createElement('div');
+      flower.classList.add('floating');
+      flower.innerHTML = '🌸';
+      flower.style.left = Math.random() * 100 + 'vw';
+      flower.style.animationDuration = (5 + Math.random() * 10) + 's';
+      flower.style.fontSize = (15 + Math.random() * 20) + 'px';
+      document.body.appendChild(flower);
     }
-}
-</script>
+  </script>
+
+  <section>
+    <div class="card">
+      <h1>Happy Birthday Mauza 🎀</h1>
+      <p>
+        A special little website for someone who deserves beautiful things in life 🌷
+      </p>
+
+      <button class="btn" onclick="document.getElementById('countdown').scrollIntoView()">
+        Open This 💖
+      </button>
+    </div>
+  </section>
+
+  <section id="countdown">
+    <div class="card">
+      <h2>Counting The Days ✨</h2>
+      <p>Until Mauza turns 19 years old 🎂</p>
+
+      <div class="countdown">
+        <div class="time-box">
+          <h3 id="days">0</h3>
+          <span>Days</span>
+        </div>
+
+        <div class="time-box">
+          <h3 id="hours">0</h3>
+          <span>Hours</span>
+        </div>
+
+        <div class="time-box">
+          <h3 id="minutes">0</h3>
+          <span>Minutes</span>
+        </div>
+
+        <div class="time-box">
+          <h3 id="seconds">0</h3>
+          <span>Seconds</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <h2>For You 🌸</h2>
+
+      <p class="quote">
+        “Some people make the world feel softer just by being in it.”
+      </p>
+
+      <p style="margin-top:25px;">
+        Semoga di umur yang baru nanti, semua hal baik datang ke hidup kamu.
+        Semoga hari-hari kamu dipenuhi tawa, kebahagiaan, dan orang-orang yang tulus.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <h2>Secret Letter 💌</h2>
+
+      <button class="btn" onclick="showLetter()">
+        Open Letter
+      </button>
+
+      <div class="letter" id="letter">
+        <p>
+          Happy Birthday, Mauza 🌷<br><br>
+
+          Thank you for existing in this world.
+          I hope your 19th year becomes one of the happiest chapters in your life.
+
+          May every little thing you wish for slowly come true.
+          Stay kind, stay beautiful, and keep being yourself.
+
+          You deserve every good thing this life can offer ✨
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Made with sincerity 💖
+  </footer>
+
+  <script>
+    const birthday = new Date('June 20, 2026 00:00:00').getTime();
+
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = birthday - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('days').innerHTML = days;
+      document.getElementById('hours').innerHTML = hours;
+      document.getElementById('minutes').innerHTML = minutes;
+      document.getElementById('seconds').innerHTML = seconds;
+    }, 1000);
+
+    function showLetter() {
+      document.getElementById('letter').style.display = 'block';
+    }
+  </script>
 
 </body>
 </html>
